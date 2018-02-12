@@ -12,3 +12,15 @@ form {
   display: flex;
   flex-direction: column;
 }
+
+.left-arrow, .right-arrow {
+  cursor: pointer;
+}
+
+.garage-display-none {
+  display: none;
+}
+
+.item-name {
+  cursor: pointer;
+}

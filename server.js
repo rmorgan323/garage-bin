@@ -28,7 +28,7 @@ app.get('/api/v1/items', (request, response) => {
 
 /// ADD ITEM ///
 app.post('/api/v1/items', async (request, response) => {
-  const initialCleanliness = 1;
+  const initialCleanliness = 2;
   const newItem = Object.assign({}, request.body, {cleanliness: initialCleanliness});
 
   for (let requiredParameter of ['name', 'reason']) {

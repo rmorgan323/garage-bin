@@ -12,7 +12,7 @@ const seedJunk = [
   {
     name: "College Textbooks",
     reason: "They were expensive.",
-    cleanliness: 0
+    cleanliness: 3
   }
 ]
 
