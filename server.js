@@ -2,13 +2,13 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');  
 const path = require('path');
-const environment = process.env.NODE_ENV || 'development';                      //  Determines the environment to be used and sets initial value to development
-const configuration = require('./knexfile')[environment];                       //  Pulls in the knexfile and passes in correct environment
+const environment = process.env.NODE_ENV || 'development';
+const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);  
 
-app.set('port', process.env.PORT || 3000);                                      //  Sets port initially to 3000 but allows it to be changed if in a production environment
-app.use(express.static(path.join(__dirname, 'public')));                        //  Tells the app where to find static files
-app.use(bodyParser.json());                                                     //  Tells the app to use body-parser for json
+app.set('port', process.env.PORT || 3000);
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());                                              
 app.use(bodyParser.urlencoded({ extended: true }));  
 
 app.listen(app.get('port'), () => {
@@ -28,5 +28,22 @@ app.get('/api/v1/items', (request, response) => {
 
 /// ADD ITEM ///
 app.post('/api/v1/items', async (request, response) => {
-  
-})
+  const initialCleanliness = 1;
+  const newItem = Object.assign({}, request.body, {cleanliness: initialCleanliness});
+
+  for (let requiredParameter of ['name', 'reason']) {
+    if(!newItem[requiredParameter]) {
+      return response.status(422).json({ error: `Missing required parameter - ${requiredParameter}`})
+    }
+  }
+
+  database('items').returning('id').insert(newItem)
+    .then(id => {
+      return response.status(201).json(id)
+    })
+    .catch(error => {
+      return response.status(500).json({ error });
+    });
+});
+
+
