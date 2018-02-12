@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));  
 
 app.listen(app.get('port'), () => {
+  // eslint-disable-next-line no-console
   console.log(`Garage Bin is running on ${app.get('port')}.`);
 });
 
@@ -22,7 +23,7 @@ app.get('/api/v1/items', (request, response) => {
       response.status(200).json(items);
     })
     .catch(error => {
-      response.status(500).json({ error })
+      response.status(500).json({ error });
     });
 });
 
@@ -33,13 +34,13 @@ app.post('/api/v1/items', async (request, response) => {
 
   for (let requiredParameter of ['name', 'reason']) {
     if(!newItem[requiredParameter]) {
-      return response.status(422).json({ error: `Missing required parameter - ${requiredParameter}`})
+      return response.status(422).json({ error: `Missing required parameter - ${requiredParameter}`});
     }
   }
 
   database('items').returning('id').insert(newItem)
     .then(id => {
-      return response.status(201).json(id)
+      return response.status(201).json(id);
     })
     .catch(error => {
       return response.status(500).json({ error });
@@ -53,17 +54,17 @@ app.put('/api/v1/items/:items_id', async (request, response) => {
   const itemToUpdate = await database('items').where('id', items_id).select();
 
   if (!itemToUpdate.length) {
-    return response.status(422).json({ error: `Item ${items_id} not found` })
+    return response.status(422).json({ error: `Item ${items_id} not found` });
   }
 
   await database('items').where('id', items_id).update(updatedItem)
     .then(() => {
       return response.status(201).send({
         success: `Item ${items_id} updated.`
-      })
+      });
     })
     .catch(error => {
-      return response.status(500).json({ error })
+      return response.status(500).json({ error });
     });
 });
 

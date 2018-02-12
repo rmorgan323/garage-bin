@@ -1,6 +1,52 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  color: #666;
+  outline: none;
+  line-height: 1.3;
+}
+
+body {
+  background-color: #eee;
+}
+
+::placeholder {
+  text-align: center;
+  opacity: .4;
+}
+
+p {
+  font-family: 'Libre Baskerville', serif;
+  line-height: 1.5;
+}
 
 h1 {
   text-align: center;
+  font-size: 40px;
+  opacity: .8;
+  margin: 0;
+}
+
+header {
+  background-color: #a1cfd6;
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.header-name {
+  position: absolute;
+  top: -13px;
+  right: 15px;
+}
+
+.header-right {
+  color: #888;
+  margin-left: 2px;
+  transform: rotate(10deg);
+  position: relative;
+  top: 6px;
 }
 
 .inputs {
@@ -13,8 +59,52 @@ form {
   flex-direction: column;
 }
 
+.name-input, .reason-input, .submit-item-button, .toggle-garage-button {
+  height: 45px;
+  margin: 30px 0 0;
+  font-size: 20px;
+}
+
+.name-input, .reason-input {
+  border: none;
+  border-bottom: 5px solid #ccc;
+}
+
+.submit-item-button {
+  border: none;
+  background-color: #aaa;
+  color: #eee;
+  cursor: pointer;
+}
+
+.submit-item-button:hover {
+  background-color: #ccc;
+}
+
+.toggle-garage-button {
+  width: 100%;
+  background-color: #a1cfd6;
+  color: #eee;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.toggle-garage-button:hover {
+  background-color: #81aeb5;
+}
+
 .left-arrow, .right-arrow {
   cursor: pointer;
+  color: #a0ced6;
+}
+
+.left-arrow {
+  margin-left: 6px;
+}
+
+.left-arrow:hover, .right-arrow:hover {
+  color: #81aeb5;
 }
 
 .garage-display-none {
@@ -24,3 +114,99 @@ form {
 .item-name {
   cursor: pointer;
 }
+
+.garage-door-top {
+  width: 100%;
+  height: 30px;
+  background-color: #ccc;
+}
+
+.garage-door {
+  background-color: #aaa;
+  height: 80vh;
+  transition: all 2s ease-in;
+}
+
+.garage-door-up {
+  height: 0vh;
+  transition: all 2s ease-in;
+}
+
+.items {
+  width: 500px;
+  margin: auto;
+}
+
+.button-holder {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sort-ascending, .sort-descending {
+  margin: 0;
+  background-color: #aaa;
+  border: none;
+  height: 45px;
+  width: 240px;
+  font-size: 20px;
+  color: #eee;
+  cursor: pointer;
+}
+
+.sort-ascending:hover, .sort-descending:hover {
+  background-color: #ccc;
+}
+
+.item-holder {
+  background-color: #fff;
+  padding: 12px;
+  margin: 20px 0;
+}
+
+.item-name {
+  margin: 0;
+}
+
+.item-reason {
+  background-color: #eee;
+  padding: 10px;
+}
+
+.item-body-holder {
+  position: relative;
+}
+
+.delete-item-button {
+  background: none;
+  color: #991f20;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.delete-item-button:hover {
+  color: #df1f20;
+}
+
+.item-cleanliness {
+  margin: 0;
+  color: #ccc;
+}
+
+.clean-text {
+  width: 97px;
+  text-align: center;
+  display: inline-block;
+}
+
+
+
+
+
+
+
+
+
