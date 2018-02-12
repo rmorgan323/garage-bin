@@ -4,12 +4,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../css/normalize.css" type="text/css" rel="stylesheet">
     <link href="../css/styles.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700|Montserrat:200,400,800" rel="stylesheet">
     <title>Garage Bin</title>
   </head>
   <body>
     <header>
-      <h1><span>garage</span>bin</h1>
+      <h1>garage</h1><h1 class="header-right">bin</h1>
+      <h6 class="header-name">by Rob Morgan</h6>
     </header>
+
     <main>
       <section class="inputs">
         <form>
@@ -17,23 +20,27 @@
           <input class="reason-input" placeholder="REASON FOR KEEPING"></input>
           <button class="submit-item-button" type="submit">SUBMIT</button>
         </form>
-      </section>
+        <button class="toggle-garage-button">GARAGE DOOR</button>
+      </section>  
 
-      <button class="toggle-garage-button">GARAGE DOOR</button>
+      <div class="garage-door-holder">
+        <div class="garage-door-top"></div>
+        <div class="garage-door"></div>
+      </div>
 
       <section data-items="0" class="items garage-display-none">
         <h2>Total Garage Items: <span class="item-count">0</span></h2>
         <h4>Rancid Items: <span class="rancid-item-count">0</span></h4>
         <h4>Dusty Items: <span class="dusty-item-count">0</span></h4>
         <h4>Sparkling Items: <span class="sparkling-item-count">0</span></h4>
-        <hr />
-        <button class="sort-ascending">Sort Ascending</button>
-        <button class="sort-descending">Sort Descending</button>
-        <hr />
+        <div class="button-holder">
+          <button class="sort-ascending">Sort Ascending</button>
+          <button class="sort-descending">Sort Descending</button>
+        </div>
       </section>
-
     </main>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="./js/jquery-3.1.1.js"></script>
     <script src="js/scripts.js"></script>
   </body>
