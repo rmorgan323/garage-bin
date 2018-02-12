@@ -1,0 +1,30 @@
+{
+  "name": "garage-bin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "./node_modules/eslint/bin/eslint.js server.js public/js/scripts.js test/routes.spec.js",
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-eslint": "^8.2.1",
+    "body-parser": "^1.18.2",
+    "eslint-config-airbnb": "^16.1.0",
+    "express": "^4.16.2",
+    "knex": "^0.14.3",
+    "pg": "^7.4.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "git+https://github.com/chaijs/chai-http.git#3ea4524",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^1.16.0",
+    "mocha": "^5.0.0"
+  }
+}
