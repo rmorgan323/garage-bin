@@ -84,10 +84,4 @@ app.delete('/api/v1/items/:items_id', async (request, response) => {
   }
 });
 
-
-
-
-
-
-
 module.exports = app;
