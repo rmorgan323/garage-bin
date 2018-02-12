@@ -46,4 +46,48 @@ app.post('/api/v1/items', async (request, response) => {
     });
 });
 
+/// UPDATE ITEM BY ID ///
+app.put('/api/v1/items/:items_id', async (request, response) => {
+  const { items_id } = request.params;
+  const updatedItem = request.body;
+  const itemToUpdate = await database('items').where('id', items_id).select();
 
+  if (!itemToUpdate.length) {
+    return response.status(422).json({ error: `Item ${items_id} not found` })
+  }
+
+  await database('items').where('id', items_id).update(updatedItem)
+    .then(() => {
+      return response.status(201).send({
+        success: `Item ${items_id} updated.`
+      })
+    })
+    .catch(error => {
+      return response.status(500).json({ error })
+    });
+});
+
+/// DELETE ITEM BY ID ///
+app.delete('/api/v1/items/:items_id', async (request, response) => {
+  const { items_id } = request.params;
+
+  try {
+    const deletedItem = await database('items').returning('id').where('id', items_id).delete();
+
+    if (!deletedItem.length) {
+      return response.status(422).json({ error: `Item ${items_id} not found.`});
+    } else {
+      return response.sendStatus(204);
+    }
+  } catch (error) {
+    return response.status(500).json({ error });
+  }
+});
+
+
+
+
+
+
+
+module.exports = app;
