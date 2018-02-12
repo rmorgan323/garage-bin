@@ -56,7 +56,6 @@ const displayItems = async () => {
   displayMe(items);
 }
 
-
 const addItem = async () => {
   const name = $('.name-input').val();
   const reason = $('.reason-input').val();
@@ -103,10 +102,32 @@ const findCurrentItemCount = () => {
   return parseInt($('.items').attr('data-items'));
 }
 
-const displayMe = (itemsArray) => {
+const compareDescending = (a,b) => {
+  if (a.name < b.name)
+    return -1;
+  if (a.name > b.name)
+    return 1;
+  return 0;
+}
+
+const compareAscending = (a,b) => {
+  if (b.name < a.name)
+    return -1;
+  if (b.name > a.name)
+    return 1;
+  return 0;
+}
+
+const displayMe = (itemsArray, sort = 'descending') => {
   updateItemCount(itemsArray.length);
 
-  itemsArray.sort((a, b) => a.id - b.id).forEach(item => {
+  if (sort === 'descending') {
+    itemsArray = itemsArray.sort(compareDescending);
+  } else {
+    itemsArray = itemsArray.sort(compareAscending);
+  }
+
+  itemsArray.forEach(item => {
     const itemId = item.id;
     const itemName = item.name;
     const itemReason = item.reason;
@@ -182,6 +203,21 @@ function toggleItemBody() {
   $(this).siblings('.item-body-holder').toggleClass('garage-display-none')
 }
 
+const sortAscending = async () => {
+  const items = await getItems();
+  $('.item-holder').remove();
+
+
+  displayMe(items, 'ascending')
+}
+
+const sortDescending = async () => {
+  const items = await getItems();
+  $('.item-holder').remove();
+
+  displayMe(items, 'descending')
+}
+
 ///  EVENT LISTENERS  ///
 
 $('.submit-item-button').on('click', function(event) {
@@ -193,6 +229,8 @@ $('.items').on('click', '.left-arrow', updateCleanliness)
 $('.items').on('click', '.right-arrow', updateCleanliness)
 $('.toggle-garage-button').on('click', toggleGarage)
 $('.items').on('click', '.item-name', toggleItemBody)
+$('.sort-ascending').on('click', sortAscending)
+$('.sort-descending').on('click', sortDescending)
 
 
 
