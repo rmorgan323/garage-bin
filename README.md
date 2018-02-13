@@ -1,4 +1,4 @@
-# garage-bin
+# Garage Bin
 
 **Garage Bin - Turing Mod 4 Final - Live version: https://garage-bin-rmorgan323.herokuapp.com/**
 
